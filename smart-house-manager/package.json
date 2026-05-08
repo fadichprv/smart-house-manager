@@ -1,0 +1,19 @@
+{
+  "name": "smart-house-manager",
+  "version": "1.0.0",
+  "description": "Smart Shared House Manager - Monorepo",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "dependencies": {
+    "firebase": "^12.13.0"
+  }
+}
