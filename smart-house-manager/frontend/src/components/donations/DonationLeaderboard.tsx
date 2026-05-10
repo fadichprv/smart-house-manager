@@ -44,7 +44,7 @@ const DonationLeaderboard: React.FC<DonationLeaderboardProps> = ({ entries }) =>
           </div>
 
           {/* Avatar */}
-          <Avatar name={entry.name} src={entry.avatar_url} size="sm" />
+          <Avatar name={entry.name} src={entry.avatarUrl} size="sm" />
 
           {/* Info */}
           <div className="flex-1 min-w-0">
@@ -52,13 +52,13 @@ const DonationLeaderboard: React.FC<DonationLeaderboardProps> = ({ entries }) =>
               <p className="text-sm font-medium text-white truncate">{entry.name}</p>
               <RoleBadge role={entry.role} />
             </div>
-            <p className="text-xs text-slate-400">{entry.donation_count} donations</p>
+            <p className="text-xs text-slate-400">{entry.donationCount ?? 0} donations</p>
           </div>
 
           {/* Amount */}
           <div className="text-right">
             <p className={clsx('font-bold', index < 3 ? rankColors[index] : 'text-white')}>
-              ${parseFloat(entry.total_donated as any).toFixed(2)}
+              ${parseFloat(String(entry.totalDonations || 0)).toFixed(2)}
             </p>
           </div>
         </motion.div>

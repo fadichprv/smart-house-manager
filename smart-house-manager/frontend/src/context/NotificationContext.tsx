@@ -1,7 +1,12 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { subscribeToNotifications, markNotificationRead, markAllNotificationsRead } from '@/lib/firestore';
+import {
+  subscribeToNotifications,
+  markNotificationRead,
+  markAllNotificationsRead,
+  deleteNotification as deleteNotificationDoc,
+} from '@/lib/firestore';
 import { AppNotification } from '@/types';
 import { useAuth } from './AuthContext';
 
@@ -10,6 +15,7 @@ interface NotificationContextType {
   unreadCount: number;
   markRead: (id: string) => Promise<void>;
   markAllRead: () => Promise<void>;
+  deleteNotification: (id: string) => Promise<void>;
 }
 
 const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
@@ -34,12 +40,17 @@ export const NotificationProvider = ({ children }: { children: React.ReactNode }
     if (user) await markAllNotificationsRead(user.id);
   };
 
+  const deleteNotification = async (id: string) => {
+    await deleteNotificationDoc(id);
+  };
+
   return (
     <NotificationContext.Provider value={{
       notifications,
       unreadCount: notifications.filter(n => !n.isRead).length,
       markRead,
       markAllRead,
+      deleteNotification,
     }}>
       {children}
     </NotificationContext.Provider>

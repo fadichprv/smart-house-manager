@@ -329,6 +329,10 @@ export const markAllNotificationsRead = async (userId: string) => {
   await batch.commit();
 };
 
+export const deleteNotification = async (id: string) => {
+  await deleteDoc(doc(db, COLLECTIONS.NOTIFICATIONS, id));
+};
+
 export const subscribeToNotifications = (userId: string, callback: (notifs: any[]) => void) => {
   return onSnapshot(
     query(collection(db, COLLECTIONS.NOTIFICATIONS),

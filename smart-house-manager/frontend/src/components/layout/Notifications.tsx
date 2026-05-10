@@ -4,7 +4,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Bell, Check, CheckCheck, Trash2 } from 'lucide-react';
 import { useNotifications } from '@/context/NotificationContext';
-import { Notification } from '@/types';
+import { AppNotification } from '@/types';
 import { formatDistanceToNow } from 'date-fns';
 import { clsx } from 'clsx';
 
@@ -23,10 +23,12 @@ const notificationIcons: Record<string, string> = {
 };
 
 const NotificationItem: React.FC<{
-  notification: Notification;
+  notification: AppNotification;
   onRead: (id: string) => void;
   onDelete: (id: string) => void;
 }> = ({ notification, onRead, onDelete }) => {
+  const createdAt = notification.createdAt?.toDate?.() ?? notification.createdAt ?? new Date();
+
   return (
     <motion.div
       layout
@@ -35,7 +37,7 @@ const NotificationItem: React.FC<{
       exit={{ opacity: 0, x: 20 }}
       className={clsx(
         'flex gap-3 p-4 rounded-xl border transition-colors',
-        notification.is_read
+        notification.isRead
           ? 'bg-slate-800/50 border-slate-700/50'
           : 'bg-slate-700/50 border-violet-500/20'
       )}
@@ -44,16 +46,16 @@ const NotificationItem: React.FC<{
         {notificationIcons[notification.type] || '🔔'}
       </span>
       <div className="flex-1 min-w-0">
-        <p className={clsx('text-sm font-medium', notification.is_read ? 'text-slate-300' : 'text-white')}>
+        <p className={clsx('text-sm font-medium', notification.isRead ? 'text-slate-300' : 'text-white')}>
           {notification.title}
         </p>
         <p className="text-xs text-slate-400 mt-0.5 line-clamp-2">{notification.message}</p>
         <p className="text-xs text-slate-500 mt-1">
-          {formatDistanceToNow(new Date(notification.created_at), { addSuffix: true })}
+          {formatDistanceToNow(new Date(createdAt), { addSuffix: true })}
         </p>
       </div>
       <div className="flex flex-col gap-1 flex-shrink-0">
-        {!notification.is_read && (
+        {!notification.isRead && (
           <button
             onClick={() => onRead(notification.id)}
             className="p-1 rounded-lg text-slate-400 hover:text-violet-400 hover:bg-violet-500/10 transition-colors"

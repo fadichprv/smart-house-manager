@@ -1,4 +1,5 @@
 export type UserRole = 'admin' | 'premium' | 'normal';
+export type User = AppUser;
 
 export interface AppUser {
   id: string;
@@ -67,4 +68,35 @@ export interface AppNotification {
   isRead: boolean;
   relatedId?: string;
   createdAt?: any;
+
+}
+
+export interface DonationLeaderboardEntry {
+  id: string;
+  name: string;
+  role: UserRole;
+  avatarUrl?: string;
+  totalDonations: number | string;
+  donationCount?: number;
+}
+
+export interface AdminStats {
+  users: {
+    total: number;
+    premium: number;
+    admins: number;
+  };
+  rooms: {
+    total: number;
+    available: number;
+  };
+  reservations: {
+    total: number;
+    upcoming: number;
+  };
+  donations: {
+    total_amount: number | string;
+    this_month: number | string;
+  };
+  avatar_Url?: string;
 }
