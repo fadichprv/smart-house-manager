@@ -22,7 +22,7 @@ const ReservationCalendar: React.FC<ReservationCalendarProps> = ({ reservations,
   const startDayOfWeek = getDay(monthStart);
 
   const getReservationsForDay = (date: Date) => {
-    return reservations.filter(r => isSameDay(new Date(r.start_time), date));
+    return reservations.filter(r => isSameDay(new Date(r.startTime), date));
   };
 
   const handleDateClick = (date: Date) => {
@@ -140,10 +140,10 @@ const ReservationCalendar: React.FC<ReservationCalendarProps> = ({ reservations,
               >
                 <div className="w-1 h-10 rounded-full bg-violet-500" />
                 <div>
-                  <p className="text-sm font-medium text-white">{res.room_name}</p>
+                  <p className="text-sm font-medium text-white">{res.roomName}</p>
                   <p className="text-xs text-slate-400">
-                    {format(new Date(res.start_time), 'HH:mm')} – {format(new Date(res.end_time), 'HH:mm')}
-                    {res.user_name && ` · ${res.user_name}`}
+                    {format(new Date(res.startTime), 'HH:mm')} – {format(new Date(res.endTime), 'HH:mm')}
+                    {res.userName && ` · ${res.userName}`}
                   </p>
                 </div>
               </div>

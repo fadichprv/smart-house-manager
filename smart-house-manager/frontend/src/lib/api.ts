@@ -88,7 +88,7 @@ export const reservationsApi = {
   getById: (id: string) => api.get(`/reservations/${id}`),
   getCalendar: (month?: number, year?: number) =>
     api.get('/reservations/calendar', { params: { month, year } }),
-  create: (data: { room_id: string; start_time: string; end_time: string; notes?: string }) =>
+  create: (data: { room_id: string; startTime: string; endTime: string; notes?: string }) =>
     api.post('/reservations', data),
   update: (id: string, data: any) => api.put(`/reservations/${id}`, data),
   cancel: (id: string) => api.delete(`/reservations/${id}`),

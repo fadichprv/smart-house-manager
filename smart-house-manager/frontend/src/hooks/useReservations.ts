@@ -36,7 +36,7 @@ export const useCalendarReservations = (month?: number, year?: number) => {
 export const useCreateReservation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: { room_id: string; start_time: string; end_time: string; notes?: string }) =>
+    mutationFn: (data: { room_id: string; startTime: string; endTime: string; notes?: string }) =>
       reservationsApi.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['my-reservations'] });

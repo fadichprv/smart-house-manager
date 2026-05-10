@@ -52,26 +52,26 @@ const ReservationList: React.FC<ReservationListProps> = ({
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-2">
-                  <h3 className="font-semibold text-white truncate">{reservation.room_name}</h3>
+                  <h3 className="font-semibold text-white truncate">{reservation.roomName}</h3>
                   <StatusBadge status={reservation.status} />
                 </div>
 
-                {showUser && reservation.user_name && (
+                {showUser && reservation.userName && (
                   <p className="text-sm text-slate-400 mb-2">
-                    Booked by: <span className="text-slate-300">{reservation.user_name}</span>
+                    Booked by: <span className="text-slate-300">{reservation.userName}</span>
                   </p>
                 )}
 
                 <div className="flex flex-wrap gap-3 text-xs text-slate-400">
                   <div className="flex items-center gap-1">
                     <Calendar className="w-3.5 h-3.5 text-violet-400" />
-                    <span>{format(new Date(reservation.start_time), 'MMM d, yyyy')}</span>
+                    <span>{format(new Date(reservation.startTime), 'MMM d, yyyy')}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Clock className="w-3.5 h-3.5 text-violet-400" />
                     <span>
-                      {format(new Date(reservation.start_time), 'HH:mm')} –{' '}
-                      {format(new Date(reservation.end_time), 'HH:mm')}
+                      {format(new Date(reservation.startTime), 'HH:mm')} –{' '}
+                      {format(new Date(reservation.endTime), 'HH:mm')}
                     </span>
                   </div>
                 </div>
@@ -82,7 +82,7 @@ const ReservationList: React.FC<ReservationListProps> = ({
               </div>
 
               {(reservation.status === 'confirmed' || reservation.status === 'pending') &&
-                new Date(reservation.start_time) > new Date() && (
+                new Date(reservation.startTime) > new Date() && (
                   <Button
                     variant="danger"
                     size="sm"

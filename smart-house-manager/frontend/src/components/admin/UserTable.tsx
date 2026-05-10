@@ -88,7 +88,7 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
             >
               <td className="py-3 pl-2">
                 <div className="flex items-center gap-3">
-                  <Avatar name={user.name} src={user.avatar_url} size="sm" />
+                  <Avatar name={user.name} src={user.avatarUrl} size="sm" />
                   <div>
                     <p className="text-sm font-medium text-white">{user.name}</p>
                     <p className="text-xs text-slate-400">{user.email}</p>
@@ -100,22 +100,22 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
               </td>
               <td className="py-3 hidden md:table-cell">
                 <span className="text-xs text-slate-400">
-                  {format(new Date(user.created_at), 'MMM d, yyyy')}
+                  {format(new Date(user.createdAt), 'MMM d, yyyy')}
                 </span>
               </td>
               <td className="py-3 hidden lg:table-cell">
                 <span className="text-sm text-emerald-400 font-medium">
-                  ${parseFloat(user.total_donations as any).toFixed(2)}
+                  ${parseFloat(user.totalDonations as any).toFixed(2)}
                 </span>
               </td>
               <td className="py-3">
                 <span className={clsx(
                   'text-xs font-medium px-2 py-0.5 rounded-full',
-                  user.is_active
+                  user.isActive
                     ? 'bg-emerald-500/20 text-emerald-300'
                     : 'bg-red-500/20 text-red-300'
                 )}>
-                  {user.is_active ? 'Active' : 'Inactive'}
+                  {user.isActive ? 'Active' : 'Inactive'}
                 </span>
               </td>
               <td className="py-3 pr-2">
@@ -152,8 +152,8 @@ const UserTable: React.FC<UserTableProps> = ({ users }) => {
                           onClick={() => handleToggleStatus(user.id)}
                           className="flex items-center gap-2 w-full px-3 py-2 text-sm text-slate-300 hover:bg-slate-700 rounded-lg transition-colors"
                         >
-                          {user.is_active ? <UserX className="w-3.5 h-3.5" /> : <UserCheck className="w-3.5 h-3.5" />}
-                          {user.is_active ? 'Deactivate' : 'Activate'}
+                          {user.isActive ? <UserX className="w-3.5 h-3.5" /> : <UserCheck className="w-3.5 h-3.5" />}
+                          {user.isActive ? 'Deactivate' : 'Activate'}
                         </button>
                         <button
                           onClick={() => handleDelete(user.id, user.name)}
