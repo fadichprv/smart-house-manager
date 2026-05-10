@@ -32,7 +32,7 @@ const StatsOverview: React.FC<StatsOverviewProps> = ({ stats }) => {
         title="Total Reservations"
         value={stats.reservations.total}
         icon={<BookOpen className="w-6 h-6" />}
-        color="emerald"
+        color="green"
         subtitle={`${stats.reservations.upcoming} upcoming`}
         index={2}
       />
