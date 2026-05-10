@@ -54,6 +54,11 @@ export default function LoginPage() {
               leftIcon={<Lock className="w-4 h-4" />}
               rightIcon={<button type="button" onClick={() => setShowPw(!showPw)} className="text-slate-400 hover:text-white">{showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}</button>}
               required autoComplete="current-password" />
+            <div className="flex justify-end">
+              <Link href="/forgot-password" className="text-sm text-violet-400 hover:text-violet-300 font-medium transition-colors">
+                Forgot password?
+              </Link>
+            </div>
 
             {error && (
               <motion.div initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }}
